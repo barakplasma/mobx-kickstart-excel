@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Cell.scss';
-import {getCellValue, convertCellLocation} from '../App/index';
+import {getCellMapValue, convertCellLocation} from '../App/index';
+import {observer} from 'mobx-react';
 
-function Cell({rowIndex, cellIndex}) {
-  let innerContent = getCellValue(convertCellLocation(rowIndex, cellIndex));
-  console.log(innerContent);
+const Cell = observer(({rowIndex, cellIndex}) => {
+  const innerContent = getCellMapValue(convertCellLocation(rowIndex, cellIndex));
+  // console.log(innerContent.value);
 
   return (
-    <td className={s.cell}>{innerContent}</td>
+    <td className={s.cell}>{innerContent.value}</td>
   );
-}
+});
 
 Cell.propTypes = {
   rowIndex: PropTypes.number.isRequired,
