@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import s from './Cell.scss';
 
 function Cell({rowIndex, cellIndex}) {
+
+
   return (
     <td className={s.cell}/>
   );
