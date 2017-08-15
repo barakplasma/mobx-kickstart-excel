@@ -8,7 +8,7 @@ function Cell({rowIndex, cellIndex}) {
   console.log(innerContent);
 
   return (
-    <td className={s.cell}>{JSON.stringify(innerContent.value)}</td>
+    <td className={s.cell}>{innerContent}</td>
   );
 }
 
