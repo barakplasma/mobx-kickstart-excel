@@ -29,10 +29,8 @@ const formulaComputation = formula => {
   if (formula.toString().includes('=')) {
     const searchResults = formula.match(/^=(\w)([0-9])(.*)/);
     const [, x, y, formulaMath] = searchResults;
-    console.log('found in formula: ', x, y, formulaMath);
     const letterInts = {'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9, 'J': 10};
     const letterToInt = letter => letterInts[letter];
-    // console.log('l2i', letterToInt('F'));
     const referredValue = toJS(getCellMapValue(generateLocation(letterToInt(x), parseInt(y)))).value;
     // eslint-disable-next-line no-eval
     const formulaResult = eval(`${referredValue}${formulaMath}`);
@@ -56,3 +54,4 @@ console.log('get A5', getCellMapValue(generateLocation(1, 5)).value);
 
 /* todo add a selected_cell property on state
  which is changed by an action which gets the clicked cells location */
+export const store = observable({selectedCell: '', FormulaEditorValue: ''});

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './FormulaEditor.scss';
+import {store} from '../App/index';
+import {observer} from 'mobx-react';
 
 class InputWithState extends React.Component {
 
@@ -48,14 +50,14 @@ InputWithState.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-const FormulaEditor = () => (
+const FormulaEditor = observer(() => (
   <div className={s.formulaEditor}>
     Formula: <InputWithState
-      value=""
+      value={store.FormulaEditorValue}
       onChange={() => {}}
       />
   </div>
 
-);
+));
 
 export default FormulaEditor;
