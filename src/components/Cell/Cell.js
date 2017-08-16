@@ -7,6 +7,8 @@ import {observer} from 'mobx-react';
 const Cell = observer(({rowIndex, cellIndex}) => {
   const innerContent = getCellMapValue(convertCellLocation(rowIndex, cellIndex));
   // console.log(innerContent.value);
+  // eslint-disable-next-line no-unused-vars
+  const printLocation = () => `r${rowIndex},c${cellIndex} :`;
 
   return (
     <td className={s.cell}>{innerContent.value}</td>
