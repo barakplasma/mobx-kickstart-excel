@@ -5,27 +5,27 @@ import {getCellMapValue, convertCellLocation, store} from '../App/index';
 import {observer} from 'mobx-react';
 import {action} from 'mobx';
 
+export const setSelectedCell = action(location => {
+  store.selectedCell = location;
+});
+
 const Cell = observer(({rowIndex, cellIndex}) => {
   const innerContent = getCellMapValue(convertCellLocation(rowIndex, cellIndex));
-  // console.log(innerContent.value);
   // eslint-disable-next-line no-unused-vars
   const printLocation = () => `r${rowIndex},c${cellIndex} :`;
 
-  const printFormulaEditorValue = () => console.log('attempted');
-
-  const printEventTarget = e => console.log(e.target.className);
-  const setSelectedCell = () => {
-    store.selectedCell = 3;
-  };
   const setFormulaEditorValue = action(() => {
     store.FormulaEditorValue = innerContent.formula;
-    console.log(store.FormulaEditorValue);
+    setSelectedCell(convertCellLocation(rowIndex, cellIndex));
   });
+
+  // todo when clicking a cell without a cell Value, create a new object there and set it
 
   return (
     <td
       className={s.cell}
-      onClick={setFormulaEditorValue}>
+      onClick={setFormulaEditorValue}
+    >
       {innerContent.value}
     </td>
   );
